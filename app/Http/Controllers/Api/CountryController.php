@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CountryResourceCollection;
 use App\Repositories\Interfaces\ICountryRepository;
 use Illuminate\Support\Facades\Response;
 
@@ -23,7 +25,8 @@ class CountryController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(){
-        return Response::json($this->repository->getAll());
+    public function index(): CountryResourceCollection{
+
+        return new CountryResourceCollection($this->repository->getAll());
     }
 }

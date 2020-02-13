@@ -27,8 +27,6 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->bind(ICountryRepository::class, CountryEloquentRepository::class);
-        $this->app->bind(IResponseTypeRepository::class, ResponseTypeEloquentRepository::class);
-        $this->app->bind(IWebRequestRepository::class, WebRequestEloquentRepository::class);
+
     }
 }

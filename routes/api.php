@@ -17,8 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/response-types', 'ResponseTypeController@index');
-Route::get('/countries', 'CountryController@index');
-Route::get('/web-requests/datatable', 'WebRequestController@datatable');
-Route::get('/web-requests/total-stats', 'WebRequestController@getTotalStats');
-Route::get('/web-requests/requests-by-country', 'WebRequestController@getRequestsByCountry');
+Route::get('/response-types', 'Api\ResponseTypeController@index');
+Route::get('/countries', 'Api\CountryController@index');
+Route::get('/web-requests/datatable', 'Api\WebRequestController@datatable');
+Route::get('/web-requests/total-stats', 'Api\WebRequestController@getTotalStats');
+Route::get('/web-requests/requests-by-country', 'Api\WebRequestController@getRequestsByCountry');

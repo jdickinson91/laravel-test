@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ResponseTypeResourceCollection;
 use App\Repositories\Interfaces\IResponseTypeRepository;
-use Illuminate\Support\Facades\Response;
 
-class ResponseTypeController extends Controller
-{
+class ResponseTypeController extends Controller {
+
     /**
      * @var IResponseTypeRepository
      */
@@ -23,7 +24,8 @@ class ResponseTypeController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(){
-        return Response::json($this->repository->getAll());
+    public function index(): ResponseTypeResourceCollection {
+
+        return new ResponseTypeResourceCollection($this->repository->getAll());
     }
 }

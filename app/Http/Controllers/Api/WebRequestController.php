@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\WebRequestByCountryRequest;
 use App\Http\Requests\WebRequestDatatableRequest;
 use App\Http\Requests\WebRequestTotalStatsRequest;
+use App\Http\Resources\WebRequestResourceCollection;
 use App\Repositories\Interfaces\IWebRequestRepository;
 use Illuminate\Support\Facades\Response;
 
@@ -54,7 +56,10 @@ class WebRequestController extends Controller {
      * @param WebRequestByCountryRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getRequestsByCountry(WebRequestByCountryRequest $request){
-        return Response::json($this->repository->getRequestsByCountry($request->response_type_id, $request->country_id));
+    public function getRequestsByCountry(WebRequestByCountryRequest $request): WebRequestResourceCollection {
+
+        $webRequests = $this->repository->getRequestsByCountry($request->response_type_id, $request->country_id);
+
+        return new WebRequestResourceCollection($webRequests);
     }
 }
